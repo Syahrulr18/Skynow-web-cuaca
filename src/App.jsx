@@ -1,40 +1,40 @@
-// src/App.jsx
-// --- KODE BARU UNTUK MENGGABUNGKAN KEDUANYA ---
-
 import React from 'react';
-
-// 1. Import background .webp Anda (pastikan namanya benar)
-import rainBackground from './assets/AnimeRainRipplesLoop5-1080ph264-ezgif.com-video-to-webp-converter.webp';
-
-// 2. Import komponen GlassSurface yang baru (pastikan path-nya benar)
+import rainBackground from './assets/video.mp4'; // Path video sudah benar
 import GlassSurface from './component/fluid-glass.jsx';
 
 function App() {
   return (
-    // 3. Container utama dengan background .webp
-    <div
-      className="w-screen h-screen bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${rainBackground})`
-      }}
-    >
-      {/* 4. Container untuk konten (agar di tengah) */}
+    // 1. Ubah div utama ini menjadi 'relative' dan 'overflow-hidden'.
+    //    Kita hapus style 'backgroundImage' dari sini.
+    <div className="relative w-screen h-screen overflow-hidden">
+      
+      {/* 2. TAMBAHKAN TAG <video> DI SINI */}
+      <video
+        src={rainBackground}
+        autoPlay  // Putar otomatis
+        loop      // Ulangi (sesuai permintaan Anda)
+        muted     // WAJIB: Browser modern tidak akan autoplay jika ada suara
+        playsInline // Membantu pemutaran di browser mobile
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+      />
+
       <div className="flex flex-col items-center justify-center h-full text-white p-4">
+
         
-        {/* 5. INI DIA! Kita panggil komponen GlassSurface di sini.
-             Background .webp akan otomatis terlihat di belakangnya.
-        */}
+        
+        {/* 4. GlassSurface (TETAP SAMA) */}
         <GlassSurface
-          width={1400}          // Atur lebar
-          height={1000}         // Atur tinggi
-          borderRadius={24}    // Atur radius sudut
-          className="p-6"      // Beri padding untuk konten di dalamnya
+          width={1400}      
+          height={1000}     
+          borderRadius={24}   
+          className="p-6"   
         >
-          {/* Ini adalah konten yang ada DI DALAM 'kaca' */}
+          {/* Konten di dalam 'kaca' (TETAP SAMA) */}
           <div className="flex flex-col items-center text-center">
             <h1 className="text-3xl font-bold">Fluid Glass</h1>
             <p className="mt-4 text-sm opacity-90">
-              Ini adalah komponen 'glass' di atas background animasi WebP.
+              {/* Saya ubah sedikit teksnya agar sesuai */}
+              Ini adalah komponen 'glass' di atas background video MP4.
             </p>
             <button className="mt-6 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
               Tombol Kaca
@@ -42,7 +42,6 @@ function App() {
           </div>
         </GlassSurface>
 
-        {/* Anda bisa menambah komponen lain jika mau */}
         <p className="mt-8 text-sm opacity-70">Scroll ke bawah (jika ada konten)</p>
 
       </div>
