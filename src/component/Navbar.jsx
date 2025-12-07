@@ -59,7 +59,7 @@ const Navbar = () => {
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white/5 backdrop-blur-xl border-t border-white/20 animate-fade-in">
-          <div className="px-4 py-4 space-y-1">
+          <div className="px-4 py-4 space-y-1 z-100">
             {navItems.map((item) => (
               <Link
                 key={item.path}
