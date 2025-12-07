@@ -1,51 +1,51 @@
 import React from 'react';
-import rainBackground from './assets/video.mp4'; // Path video sudah benar
-import GlassSurface from './component/fluid-glass.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './component/Navbar';
+import VideoBackground from './component/VideoBackground';
+import Home from './pages/Home';
+import MapPage from './pages/MapPage';
+import Dictionary from './pages/Dictionary';
+import DictionaryDetail from './pages/DictionaryDetail';
+import Quiz from './pages/Quiz';
+import Activities from './pages/Activities';
+import { CityProvider, useCityContext } from './context/CityContext';
+
+function AppContent() {
+  const { weatherCondition } = useCityContext();
+
+  return (
+    <div className="min-h-screen relative ">
+      {/* Dynamic Video Background */}
+      <VideoBackground conditionCode={weatherCondition} />
+
+      {/* Background Animation Elements (subtle overlay) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/5 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-300/5 rounded-full blur-3xl animate-float-slow"></div>
+      </div>
+
+      <Navbar className="pb-100 z-1000" />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/dictionary/:termId" element={<DictionaryDetail />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/activities" element={<Activities />} />
+      </Routes>
+    </div>
+  );
+}
 
 function App() {
   return (
-    // 1. Ubah div utama ini menjadi 'relative' dan 'overflow-hidden'.
-    //    Kita hapus style 'backgroundImage' dari sini.
-    <div className="relative w-screen h-screen overflow-hidden">
-      
-      {/* 2. TAMBAHKAN TAG <video> DI SINI */}
-      <video
-        src={rainBackground}
-        autoPlay  // Putar otomatis
-        loop      // Ulangi (sesuai permintaan Anda)
-        muted     // WAJIB: Browser modern tidak akan autoplay jika ada suara
-        playsInline // Membantu pemutaran di browser mobile
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-      />
-
-      <div className="flex flex-col items-center justify-center h-full text-white p-4">
-
-        
-        
-        {/* 4. GlassSurface (TETAP SAMA) */}
-        <GlassSurface
-          width={1400}      
-          height={1000}     
-          borderRadius={24}   
-          className="p-6"   
-        >
-          {/* Konten di dalam 'kaca' (TETAP SAMA) */}
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-3xl font-bold">Fluid Glass</h1>
-            <p className="mt-4 text-sm opacity-90">
-              {/* Saya ubah sedikit teksnya agar sesuai */}
-              Ini adalah komponen 'glass' di atas background video MP4.
-            </p>
-            <button className="mt-6 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
-              Tombol Kaca
-            </button>
-          </div>
-        </GlassSurface>
-
-        <p className="mt-8 text-sm opacity-70">Scroll ke bawah (jika ada konten)</p>
-
-      </div>
-    </div>
+    <CityProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </CityProvider>
   );
 }
 
