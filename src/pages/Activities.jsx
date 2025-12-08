@@ -587,8 +587,9 @@ const Activities = () => {
 
       {/* Activity Detail Modal */}
       {selectedActivity && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center px-4 pt-24 pb-4 animate-fade-in">
-          <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-8 max-w-2xl w-full shadow-2xl border-2 border-white/30 relative animate-scale-in">
+
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
+          <div className="bg-white/15 backdrop-blur-xl rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-t sm:border-2 border-white/30 relative animate-slide-up sm:animate-scale-in max-h-[85vh] overflow-y-auto">
             {/* Close Button */}
             <button
               onClick={() => setSelectedActivity(null)}

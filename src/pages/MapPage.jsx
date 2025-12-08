@@ -166,7 +166,7 @@ const MapPage = () => {
         </MapContainer>
 
         {/* Instructions Panel - Responsive */}
-        <div className="absolute top-4 left-4 z-[500]">
+        <div className="absolute top-4 left-4 z-500">
           {showInstructions ? (
             <>
               {/* Compact Version - Mobile Only */}
@@ -344,8 +344,9 @@ const MapPage = () => {
 
       {/* Weather Detail Panel */}
       {selectedMarker && !selectedMarker.loading && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center px-4 pt-24 pb-4 animate-fade-in">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-2xl w-full shadow-2xl border border-white/20 relative animate-scale-in">
+
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
+          <div className="bg-white/10 backdrop-blur-lg rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-t sm:border border-white/20 relative animate-slide-up sm:animate-scale-in max-h-[85vh] overflow-y-auto">
             {/* Close Button */}
             <button
               onClick={() => setSelectedMarker(null)}
