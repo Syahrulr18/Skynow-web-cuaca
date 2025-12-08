@@ -278,7 +278,7 @@ const Home = () => {
               <WeatherIcon conditionCode={weather.current.condition.code} size={100} />
             </div>
             <div>
-              <h2 className="text-6xl font-bold m-0 mb-2">
+              <h2 className="text-5xl font-bold m-0 mb-2">
                 {weather.current.temp_c}°C
               </h2>
               <p className="text-2xl m-0">
