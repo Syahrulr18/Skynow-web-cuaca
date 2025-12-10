@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'dcf380a7af0648e6bc8153629250712';
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const BASE_URL = 'https://api.weatherapi.com/v1';
 
 export const fetchWeather = async (city) => {
@@ -9,7 +9,7 @@ export const fetchWeather = async (city) => {
             params: {
                 key: API_KEY,
                 q: city,
-                aqi: 'yes', 
+                aqi: 'yes',
             },
         });
         return response.data;
