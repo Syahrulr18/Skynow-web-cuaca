@@ -15,10 +15,8 @@ function AppContent() {
 
   return (
     <div className="min-h-screen relative ">
-      {/* Dynamic Video Background */}
       <VideoBackground conditionCode={weatherCondition} />
 
-      {/* Background Animation Elements (subtle overlay) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/5 rounded-full blur-3xl animate-float-delayed"></div>
